@@ -20,7 +20,7 @@ RUN apt-get install -y \
 
 WORKDIR /app
 
-RUN git clone https://github.com/GStreamer/gst-rtsp-server.git .
+RUN git clone https://github.com/mneundorfer/gst-rtsp-server.git .
 
 RUN git checkout remotes/origin/1.14
 
@@ -47,6 +47,4 @@ COPY --from=builder /app .
 
 WORKDIR /app/examples
 
-ENTRYPOINT [ "./test-launch" ]
-
-CMD [ "( videotestsrc ! x264enc ! rtph264pay name=pay0 pt=96 )" ]
+ENTRYPOINT [ "./test-launch", "( videotestsrc ! x264enc ! rtph264pay name=pay0 pt=96 )" ]
